@@ -18,7 +18,7 @@ width=640
 height=480
 fps=30
 camera_channel=1
-fname="ca_image"
+fname="test"
 ###############################################
 wait_time=1
 
