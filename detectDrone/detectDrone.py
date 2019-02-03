@@ -54,15 +54,11 @@ for fname in images:
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     
     # define range of purple color in HSV
-    # colorMin = (115,50,10)
-    # colorMax = (160, 255, 255)
-    # colorMin = gimp2cv((180, 60, 80))
-    # colorMax = gimp2cv((300, 100, 100))
-    colorMin = (90, 153, 180)
-    colorMax = (180, 255, 255)
-    # redMin = 
-    # redMax = 
-    
+    # colorMin = (90, 153, 180)
+    # colorMax = (180, 255, 255)
+    colorMin = (160, 0, 240)
+    colorMax = (180, 70, 255)
+
     # Sets pixels to white if in purple range, else will be set to black
     mask = cv2.inRange(hsv, colorMin, colorMax)
         
@@ -77,45 +73,6 @@ for fname in images:
 
 
     contour,hier = cv2.findContours(mask,cv2.RETR_CCOMP,cv2.CHAIN_APPROX_SIMPLE)   
-    # for cnt in contour:
-    #     cv2.drawContours(mask,[cnt],0,255,-1)   
-    # # Set up the SimpleBlobdetector with default parameters.
-    # params = cv2.SimpleBlobDetector_Params()
-     
-    # # Change thresholds
-    # params.minThreshold = 0;
-    # params.maxThreshold = 256;
-     
-    # # Filter by Area.
-    # params.filterByArea = True
-    # params.minArea = 2
-     
-    # # Filter by Circularity
-    # params.filterByCircularity = False
-    # params.minCircularity = 0.1
-     
-    # # Filter by Convexity
-    # params.filterByConvexity = False
-    # params.minConvexity = 0.5
-     
-    # # Filter by Inertia
-    # params.filterByInertia =False
-    # params.minInertiaRatio = 0.5
-     
-    # detector = cv2.SimpleBlobDetector_create(params)
-
-    # # Detect blobs.
-    # reversemask=255-mask
-    # keypoints = detector.detect(reversemask)
-    # if keypoints:
-    #     print "found %d blobs" % len(keypoints)
-    #     if len(keypoints) > 2:
-    #         # if more than four blobs, keep the four largest
-    #         keypoints.sort(key=(lambda s: s.size), reverse=True)
-    #         keypoints=keypoints[:2]
-    # else:
-    #     print "no blobs"
-
     contour.sort(key=lambda c:cv2.contourArea(c), reverse=True)
     for cnt in contour[2:]:
         cv2.drawContours(mask,[cnt],0,0,-1)
